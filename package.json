@@ -20,7 +20,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "playwright:install": "playwright install chromium",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",
@@ -56,7 +56,7 @@
     ],
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "jest --bail --findRelatedTests"
+      "jest --bail --findRelatedTests --passWithNoTests"
     ]
   }
 }
