@@ -71,6 +71,7 @@ See [ARCHITECTURE.md](./docs/ARCHITECTURE.md) for details.
 
 ## Documentation
 
+- [CONTRIBUTING.md](./CONTRIBUTING.md) – How to contribute
 - [ARCHITECTURE.md](./docs/ARCHITECTURE.md) – Architecture overview and layer diagram
 - [DEVELOPMENT.md](./docs/DEVELOPMENT.md) – Development workflow and standards
 - [TESTING.md](./docs/TESTING.md) – Testing strategy and how to run tests
