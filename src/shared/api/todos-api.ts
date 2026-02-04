@@ -2,6 +2,7 @@ import type { CreateTodoDTO, Todo, TodoStatus, UpdateTodoDTO } from "@/entities/
 
 const BASE = "/api/todos";
 
+/** Shape of error payload returned by the todos API when a request fails. */
 export interface ApiError {
   error: string;
   code: string;
@@ -18,7 +19,9 @@ async function handleResponse<T>(res: Response): Promise<T> {
     }
     throw new Error(body.error || res.statusText);
   }
-  if (text.length === 0) return undefined as T;
+  if (text.length === 0) {
+    return undefined as T;
+  }
   return JSON.parse(text) as T;
 }
 
@@ -51,7 +54,11 @@ export async function createTodo(dto: CreateTodoDTO): Promise<Todo> {
 }
 
 /**
- * Updates an existing todo.
+ * Updates an existing todo by id.
+ * @param id - Todo id
+ * @param dto - Fields to update (title and/or completed)
+ * @returns Updated todo
+ * @throws Error when todo not found or request fails
  */
 export async function updateTodo(id: string, dto: UpdateTodoDTO): Promise<Todo> {
   const res = await fetch(`${BASE}/${id}`, {

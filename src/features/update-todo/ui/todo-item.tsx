@@ -4,17 +4,15 @@ import { useState, useCallback } from "react";
 import type { Todo } from "@/entities/todo";
 import { Checkbox, Button } from "@/shared/ui";
 
+/** Props for a single todo row: todo data and callbacks for update and delete. */
 export interface TodoItemProps {
   todo: Todo;
   onUpdate: (id: string, updates: { title?: string; completed?: boolean }) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
 }
 
-export function TodoItem({
-  todo,
-  onUpdate,
-  onDelete,
-}: TodoItemProps): React.ReactElement {
+/** One todo row: checkbox, editable title (double-click), and delete with confirm. */
+export function TodoItem({ todo, onUpdate, onDelete }: TodoItemProps): React.ReactElement {
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(todo.title);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -31,7 +29,9 @@ export function TodoItem({
 
   const handleSaveEdit = useCallback(async () => {
     const trimmed = editTitle.trim();
-    if (!trimmed) return;
+    if (!trimmed) {
+      return;
+    }
     if (trimmed !== todo.title) {
       await onUpdate(todo.id, { title: trimmed });
     }

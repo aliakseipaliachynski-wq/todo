@@ -5,9 +5,7 @@ function generateId(): string {
   if (typeof globalThis !== "undefined" && typeof globalThis.crypto?.randomUUID === "function") {
     return globalThis.crypto.randomUUID();
   }
-  if (typeof require !== "undefined") {
-    return (require("node:crypto") as { randomUUID: () => string }).randomUUID();
-  }
+  // Fallback UUID v4 generator (RFC4122 compliant, non-cryptographic)
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
     const r = (Math.random() * 16) | 0;
     const v = c === "x" ? r : (r & 0x3) | 0x8;
@@ -15,19 +13,31 @@ function generateId(): string {
   });
 }
 
+/**
+ * Abstraction for todo persistence. Implementations can be in-memory, API, or database.
+ */
 export interface TodoRepository {
+  /** Returns todos for the given user, optionally filtered by status. */
   findAll(userId: string, status?: TodoStatus): Promise<Todo[]>;
+  /** Returns a single todo by id, or null if not found. */
   findById(id: string): Promise<Todo | null>;
+  /** Creates a todo; id and timestamps are generated. */
   create(dto: CreateTodoDTO): Promise<Todo>;
+  /** Updates an existing todo; throws if not found. */
   update(id: string, dto: UpdateTodoDTO): Promise<Todo>;
+  /** Deletes a todo; throws if not found. */
   delete(id: string): Promise<void>;
 }
 
 const defaultStore = new Map<string, Todo>();
 
 function filterByStatus(todos: Todo[], status: TodoStatus): Todo[] {
-  if (status === "all") return todos;
-  if (status === "active") return todos.filter((t) => !t.completed);
+  if (status === "all") {
+    return todos;
+  }
+  if (status === "active") {
+    return todos.filter((t) => !t.completed);
+  }
   return todos.filter((t) => t.completed);
 }
 

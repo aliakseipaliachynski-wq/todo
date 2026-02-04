@@ -9,6 +9,7 @@ const TAB_ITEMS: { id: TodoStatus; label: string }[] = [
   { id: "completed", label: "Completed" },
 ];
 
+/** Props for status tabs and search input. */
 export interface TodoFiltersProps {
   activeStatus: TodoStatus;
   onStatusChange: (status: TodoStatus) => void;
@@ -16,6 +17,7 @@ export interface TodoFiltersProps {
   onSearchChange: (query: string) => void;
 }
 
+/** Status filter tabs (All / Active / Completed) and search field. */
 export function TodoFilters({
   activeStatus,
   onStatusChange,

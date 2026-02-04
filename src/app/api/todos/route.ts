@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getTodoRepository } from "@/entities/todo/repository/todo-repository";
-import { ValidationError } from "@/entities/todo";
-import type { TodoStatus } from "@/entities/todo";
+import { ValidationError, type TodoStatus } from "@/entities/todo";
 
 const repository = getTodoRepository();
 
@@ -10,7 +9,9 @@ function errorResponse(message: string, code: string, status: number): NextRespo
 }
 
 /**
- * GET /api/todos?userId=xxx&status=all|active|completed
+ * GET /api/todos
+ * Query: userId (required), status (optional: "all" | "active" | "completed", default "all").
+ * @returns JSON array of todos for the user.
  */
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
@@ -35,7 +36,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
 /**
  * POST /api/todos
- * Body: { userId: string, title: string }
+ * Body: { userId: string, title: string }. Both required; title must be non-empty after trim.
+ * @returns 201 with created todo (id and timestamps set by server).
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {

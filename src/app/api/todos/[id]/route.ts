@@ -10,7 +10,8 @@ function errorResponse(message: string, code: string, status: number): NextRespo
 
 /**
  * PATCH /api/todos/[id]
- * Body: { title?: string, completed?: boolean }
+ * Body: { title?: string, completed?: boolean }. At least one field; title must be non-empty if provided.
+ * @returns Updated todo, or 404 if not found.
  */
 export async function PATCH(
   request: NextRequest,
@@ -26,7 +27,11 @@ export async function PATCH(
     const dto: { title?: string; completed?: boolean } = {};
     if (body?.title !== undefined) {
       if (typeof body.title !== "string" || body.title.trim().length === 0) {
-        return errorResponse("title must be a non-empty string when provided", "VALIDATION_ERROR", 400);
+        return errorResponse(
+          "title must be a non-empty string when provided",
+          "VALIDATION_ERROR",
+          400
+        );
       }
       dto.title = body.title.trim();
     }
@@ -53,6 +58,7 @@ export async function PATCH(
 
 /**
  * DELETE /api/todos/[id]
+ * @returns 204 on success, or 404 if todo not found.
  */
 export async function DELETE(
   _request: NextRequest,

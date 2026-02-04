@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Input } from "./input";
 
+/** Props for SearchInput. Value is controlled; onChange is called after debounce. */
 export interface SearchInputProps {
   value: string;
   onChange: (value: string) => void;
@@ -34,12 +35,9 @@ export function SearchInput({
     return () => clearTimeout(timer);
   }, [localValue, debounceMs, onChange]);
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setLocalValue(e.target.value);
-    },
-    []
-  );
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalValue(e.target.value);
+  }, []);
 
   return (
     <Input

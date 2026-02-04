@@ -1,3 +1,4 @@
+/** Props for the loading spinner. */
 export interface SpinnerProps {
   size?: "sm" | "md" | "lg";
   "aria-label"?: string;
@@ -9,6 +10,7 @@ const sizeClasses = {
   lg: "h-12 w-12 border-4",
 };
 
+/** Accessible loading spinner. Use aria-label to describe what is loading. */
 export function Spinner({
   size = "md",
   "aria-label": ariaLabel = "Loading",

@@ -3,11 +3,13 @@
 import { useState, useCallback } from "react";
 import { Button, Input } from "@/shared/ui";
 
+/** Props for the create-todo form. onSubmit is called with the trimmed title. */
 export interface CreateTodoFormProps {
   onSubmit: (title: string) => Promise<void>;
   isLoading?: boolean;
 }
 
+/** Form to add a new todo: single text input and submit button. */
 export function CreateTodoForm({
   onSubmit,
   isLoading = false,

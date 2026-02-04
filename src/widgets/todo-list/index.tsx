@@ -8,6 +8,7 @@ import { TodoItem } from "@/features/update-todo";
 import { useTodos } from "@/shared/hooks/use-todos";
 import { ErrorMessage, Spinner } from "@/shared/ui";
 
+/** Returns a mask of which titles match the search query (case-insensitive). */
 function filterBySearch(titles: string[], query: string): boolean[] {
   const lower = query.trim().toLowerCase();
   if (!lower) {
@@ -16,6 +17,7 @@ function filterBySearch(titles: string[], query: string): boolean[] {
   return titles.map((t) => t.toLowerCase().includes(lower));
 }
 
+/** Main todo list: create form, status filters, search, counter, and list of todo items. */
 export function TodoListWidget(): React.ReactElement {
   const [status, setStatus] = useState<TodoStatus>("all");
   const [searchQuery, setSearchQuery] = useState("");

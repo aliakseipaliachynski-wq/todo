@@ -5,7 +5,9 @@ const STORAGE_KEY = "todo_user_id";
  * Returns empty string when run on the server (SSR).
  */
 export function getOrCreateUserId(): string {
-  if (typeof window === "undefined") return "";
+  if (typeof window === "undefined") {
+    return "";
+  }
   let userId = localStorage.getItem(STORAGE_KEY);
   if (!userId) {
     userId = crypto.randomUUID();

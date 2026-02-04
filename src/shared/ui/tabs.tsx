@@ -1,10 +1,12 @@
 export type TabId = string;
 
+/** Single tab definition for Tabs. */
 export interface TabItem {
   id: TabId;
   label: string;
 }
 
+/** Props for the tab list. Requires aria-label for accessibility. */
 export interface TabsProps {
   tabs: TabItem[];
   activeId: TabId;
@@ -12,6 +14,7 @@ export interface TabsProps {
   "aria-label": string;
 }
 
+/** Renders a tab list; one tab is active and onSelect is called when user selects another. */
 export function Tabs({
   tabs,
   activeId,
