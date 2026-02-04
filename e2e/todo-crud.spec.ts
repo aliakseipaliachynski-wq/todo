@@ -54,12 +54,18 @@ test.describe("Todo filtering", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
     const input = page.getByLabel(/new todo title/i);
+
     await input.fill("Active task");
     await page.getByRole("button", { name: /add/i }).click();
+    await expect(page.getByText("Active task")).toBeVisible();
+
     await input.fill("Another active");
     await page.getByRole("button", { name: /add/i }).click();
+    await expect(page.getByText("Another active")).toBeVisible();
+
     const firstCheckbox = page.getByRole("checkbox", { name: /mark as complete/i }).first();
     await firstCheckbox.click();
+    await expect(page.getByText("Another active")).toBeVisible();
   });
 
   test("should filter by Active tab", async ({ page }) => {
@@ -85,20 +91,24 @@ test.describe("Todo search", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
     const input = page.getByLabel(/new todo title/i);
+
     await input.fill("Apple");
     await page.getByRole("button", { name: /add/i }).click();
+    await expect(page.getByText("Apple")).toBeVisible();
+
     await input.fill("Banana");
     await page.getByRole("button", { name: /add/i }).click();
+    await expect(page.getByText("Banana")).toBeVisible();
+
     await input.fill("Cherry");
     await page.getByRole("button", { name: /add/i }).click();
+    await expect(page.getByText("Cherry")).toBeVisible();
   });
 
   test("should filter list by search query", async ({ page }) => {
     const list = page.getByRole("list");
     const search = page.getByLabel(/search tasks/i);
     await search.fill("Banana");
-    // Debounced search (300ms); wait for filter to apply before asserting
-    await page.waitForTimeout(400);
     await expect(list.getByText("Banana")).toBeVisible();
     await expect(list.getByText("Apple")).not.toBeVisible();
     await expect(list.getByText("Cherry")).not.toBeVisible();
