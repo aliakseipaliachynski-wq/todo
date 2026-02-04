@@ -1,0 +1,21 @@
+---
+description: >
+  Documentation rules to ensure fast onboarding and shared understanding
+  of the system architecture and features.
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.md"
+alwaysApply: true
+---
+
+# Documentation Rules
+
+- Complex logic must include comments explaining *why*.
+- Public functions and hooks should be documented.
+- The project must have a README with:
+  - Setup instructions
+  - Architecture overview
+  - Key decisions
+- Each feature folder should contain a short README.
+- New developers should understand a feature in under 10 minutes.

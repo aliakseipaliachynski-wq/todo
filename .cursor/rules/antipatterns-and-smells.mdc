@@ -1,0 +1,26 @@
+---
+description: >
+  Lists anti-patterns and code smells that should be avoided or refactored.
+  Helps Cursor proactively suggest improvements.
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: true
+---
+
+# Anti-patterns (Do Not Introduce)
+
+- Business logic inside React components.
+- Large “god files”.
+- Global state for simple UI needs.
+- Universal utils folders.
+- Copy-pasted logic across features.
+- Premature abstractions.
+
+# Code Smells (Refactor When Seen)
+
+- Functions with multiple responsibilities.
+- Components that fetch, transform, and render data.
+- Names like handleStuff, doThing, processData.
+- Repeated conditional logic.
+- Hooks with too many dependencies.

@@ -1,0 +1,20 @@
+---
+description: >
+  Rules for managing state and data flow in a simple, predictable way.
+  Prevents overuse of global state and hidden mutations.
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: true
+---
+
+# State & Data Rules
+
+- Avoid global state unless clearly needed.
+- Separate:
+  - UI state
+  - Server state
+  - Domain state
+- Prefer immutable updates.
+- No hidden mutations.
+- Side effects must be isolated from pure logic.

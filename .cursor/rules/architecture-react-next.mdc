@@ -1,0 +1,33 @@
+---
+description: >
+  Enforces a simple, startup-friendly architecture for React and Next.js.
+  Focuses on readability, clear separation of concerns, and fast onboarding
+  for new developers.
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: true
+---
+
+# Architecture Rules (React + Next.js)
+
+## General Principles
+- Prefer readability over abstraction.
+- Avoid clever or non-obvious patterns.
+- One file should have one clear responsibility.
+- Follow existing patterns in the codebase.
+
+## Layers
+- UI (React components): rendering only, no business logic.
+- Application (hooks/services): orchestration and use cases.
+- Domain: pure business logic, framework-agnostic.
+- Infrastructure: API clients, storage, external services.
+
+## Dependency Direction
+- UI → Application → Domain.
+- Domain must not depend on React, Next.js, or browser APIs.
+
+## Pages
+- `page.tsx` files must stay thin.
+- No business logic in pages.
+- Pages orchestrate components and hooks only.

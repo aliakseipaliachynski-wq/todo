@@ -1,0 +1,22 @@
+---
+description: >
+  Rules for writing clear, maintainable React components.
+  Components should be easy to read, test, and reuse.
+globs:
+  - "**/*.tsx"
+alwaysApply: true
+---
+
+# React Component Rules
+
+- Components should be dumb by default.
+- Prefer props over internal logic.
+- Business logic must live in hooks or services.
+- Avoid components larger than ~300 lines.
+- Prefer composition over inheritance.
+- No class components.
+
+## State
+- Keep state as close as possible to where it is used.
+- Lift state only when necessary.
+- Avoid unnecessary global state.

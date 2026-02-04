@@ -1,0 +1,22 @@
+---
+description: >
+  Defines how Cursor should behave when generating or modifying code
+  in this project.
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# Cursor Behavior Rules
+
+Cursor should:
+- Follow existing architecture and folder structure.
+- Prefer simple and explicit solutions.
+- Keep changes minimal and focused.
+- Suggest refactoring when complexity increases.
+
+Cursor must not:
+- Introduce new libraries without reason.
+- Add global state automatically.
+- Change architectural style.
+- Mix UI and business logic.

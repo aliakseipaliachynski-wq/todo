@@ -1,0 +1,20 @@
+---
+description: >
+  Naming and readability rules to keep the codebase understandable
+  for new developers.
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: true
+---
+
+# Naming & Readability
+
+- Names must clearly describe intent.
+- Avoid generic names:
+  - data
+  - utils
+  - helpers
+  - manager
+- Use verbs for actions and nouns for entities.
+- If a name needs a comment, rename it.

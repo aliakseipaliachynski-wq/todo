@@ -1,0 +1,17 @@
+---
+description: >
+  Enforces clean boundaries for API access and external services.
+  Prevents leaking infrastructure details into UI and domain logic.
+globs:
+  - "**/api/**/*.ts"
+  - "**/services/**/*.ts"
+alwaysApply: true
+---
+
+# API & Infrastructure Rules
+
+- No fetch or API calls inside React components.
+- API access must be isolated in dedicated modules.
+- External APIs must be wrapped with adapters.
+- Handle errors explicitly.
+- Do not expose raw API responses to UI.
