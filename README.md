@@ -24,9 +24,11 @@ npm install
 ## Running the Project
 
 - **Development** (Turbopack is default in Next.js 16):
+
   ```bash
   npm run dev
   ```
+
   Open [http://localhost:3000](http://localhost:3000).
 
 - **Production build**:
@@ -37,21 +39,21 @@ npm install
 
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server (Turbopack) |
-| `npm run build` | Build for production |
-| `npm start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Run ESLint with auto-fix |
-| `npm run format` | Format code with Prettier |
-| `npm run format:check` | Check formatting |
-| `npm run type-check` | TypeScript check (no emit) |
-| `npm run test` | Run unit/integration tests (Jest) |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run test:coverage` | Run tests with coverage report |
-| `npm run test:e2e` | Run E2E tests (Playwright) |
-| `npm run prepare` | Install Husky hooks (runs after npm install) |
+| Script                  | Description                                  |
+| ----------------------- | -------------------------------------------- |
+| `npm run dev`           | Start development server (Turbopack)         |
+| `npm run build`         | Build for production                         |
+| `npm start`             | Start production server                      |
+| `npm run lint`          | Run ESLint                                   |
+| `npm run lint:fix`      | Run ESLint with auto-fix                     |
+| `npm run format`        | Format code with Prettier                    |
+| `npm run format:check`  | Check formatting                             |
+| `npm run type-check`    | TypeScript check (no emit)                   |
+| `npm run test`          | Run unit/integration tests (Jest)            |
+| `npm run test:watch`    | Run tests in watch mode                      |
+| `npm run test:coverage` | Run tests with coverage report               |
+| `npm run test:e2e`      | Run E2E tests (Playwright)                   |
+| `npm run prepare`       | Install Husky hooks (runs after npm install) |
 
 ## Project Structure
 
@@ -65,14 +67,14 @@ src/
 └── providers/        # React context (User, QueryClient)
 ```
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for details.
+See [ARCHITECTURE.md](./docs/ARCHITECTURE.md) for details.
 
 ## Documentation
 
-- [ARCHITECTURE.md](ARCHITECTURE.md) – Architecture overview and layer diagram
-- [DEVELOPMENT.md](DEVELOPMENT.md) – Development workflow and standards
-- [TESTING.md](TESTING.md) – Testing strategy and how to run tests
-- [API.md](API.md) – REST API reference
+- [ARCHITECTURE.md](./docs/ARCHITECTURE.md) – Architecture overview and layer diagram
+- [DEVELOPMENT.md](./docs/DEVELOPMENT.md) – Development workflow and standards
+- [TESTING.md](./docs/TESTING.md) – Testing strategy and how to run tests
+- [API.md](./docs/API.md) – REST API reference
 
 ## License
 

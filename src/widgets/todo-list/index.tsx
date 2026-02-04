@@ -10,7 +10,9 @@ import { ErrorMessage, Spinner } from "@/shared/ui";
 
 function filterBySearch(titles: string[], query: string): boolean[] {
   const lower = query.trim().toLowerCase();
-  if (!lower) return titles.map(() => true);
+  if (!lower) {
+    return titles.map(() => true);
+  }
   return titles.map((t) => t.toLowerCase().includes(lower));
 }
 
@@ -18,16 +20,8 @@ export function TodoListWidget(): React.ReactElement {
   const [status, setStatus] = useState<TodoStatus>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const {
-    todos,
-    isLoading,
-    error,
-    refetch,
-    createTodo,
-    isCreating,
-    updateTodo,
-    deleteTodo,
-  } = useTodos(status);
+  const { todos, isLoading, error, refetch, createTodo, isCreating, updateTodo, deleteTodo } =
+    useTodos(status);
 
   const filteredTodos = useMemo(() => {
     const titles = todos.map((t) => t.title);
@@ -49,15 +43,6 @@ export function TodoListWidget(): React.ReactElement {
     return { all: todos.length, active, completed };
   }, [todos]);
 
-  if (error) {
-    return (
-      <ErrorMessage
-        message={error instanceof Error ? error.message : "Something went wrong"}
-        onRetry={() => void refetch()}
-      />
-    );
-  }
-
   const handleCreateTodo = useCallback(
     async (title: string): Promise<void> => {
       await createTodo(title);
@@ -66,14 +51,20 @@ export function TodoListWidget(): React.ReactElement {
   );
 
   const handleUpdateTodo = useCallback(
-    async (
-      id: string,
-      updates: { title?: string; completed?: boolean }
-    ): Promise<void> => {
+    async (id: string, updates: { title?: string; completed?: boolean }): Promise<void> => {
       await updateTodo({ id, ...updates });
     },
     [updateTodo]
   );
+
+  if (error) {
+    return (
+      <ErrorMessage
+        message={error instanceof Error ? error.message : "Something went wrong"}
+        onRetry={() => void refetch()}
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -96,9 +87,7 @@ export function TodoListWidget(): React.ReactElement {
         <ul className="space-y-2" role="list">
           {filteredTodos.length === 0 ? (
             <li className="rounded-md border border-dashed border-gray-300 py-8 text-center text-gray-500">
-              {todos.length === 0
-                ? "No tasks yet. Add one above."
-                : "No tasks match your search."}
+              {todos.length === 0 ? "No tasks yet. Add one above." : "No tasks match your search."}
             </li>
           ) : (
             filteredTodos.map((todo) => (
